@@ -1,4 +1,5 @@
 #pragma once
+#include <Signal/SimpleInput.hpp>
 
 namespace simpp::Component
 {
@@ -8,10 +9,11 @@ namespace simpp::Component
   public:
     using DataType = T;
 
-  protected:
-    T Handle(T input)
+    T Get() const
     {
-      return input * 0.9;
+      return Input.Get() * 0.8;
     }
+
+    const SimpleInput<T> Input;
   };
 }
