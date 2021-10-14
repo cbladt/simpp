@@ -1,17 +1,24 @@
 #pragma once
 
-#include <Signal/IHaveValue.hpp>
+#include <Signal/Sender.hpp>
 
 namespace simpp::Component
 {
   template <typename T>
   class ConstantSource :
-      public Signal::IHaveValue<T>
+      public Signal::Sender<T>
   {
   public:
-    T Get() const
+    ConstantSource(T value) :
+      _value(value)
+    {}
+
+    void Tick() const
     {
-      return 1;
+      this->Send(_value);
     }
+
+  private:
+    T _value;
   };
 }
